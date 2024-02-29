@@ -13,7 +13,7 @@ export class App extends Component {
   };
 
   handleAddContact = contact => {
-    if (this.state.contacts.some(item => item.name === contact.name)) {
+    if (this.state.contacts.some(item => item.name.toLowerCase() === contact.name.toLowerCase())) {
       iziToast.warning({
         title: 'Caution',
         message: `${contact.name} is already in contacts`,
