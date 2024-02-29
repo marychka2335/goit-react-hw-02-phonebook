@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import Notiflix from 'notiflix';
+// import Notiflix from 'notiflix';
+import iziToast from 'izitoast';
 import css from './App.module.css';
 import { PhonebookForm } from './PhonebookForm/PhonebookForm';
 import { ContactsList } from './ContactsList/ContactsList';
@@ -13,7 +14,14 @@ export class App extends Component {
 
   handleAddContact = contact => {
     if (this.state.contacts.some(item => item.name === contact.name)) {
-      Notiflix.Notify.failure(`${contact.name} is already in contacts`);
+      // Notiflix.Notify.failure(`${contact.name} is already in contacts`);
+      iziToast.warning({
+        message: 'Oops! ${contact.name} is already in contacts',
+        messageColor: 'white',
+        backgroundColor: 'lightpink',
+        timeout: 3000,
+        position: 'topCenter',
+      });
       return true;
     }
     this.setState(prevState => {
